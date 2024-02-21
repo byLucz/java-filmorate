@@ -51,9 +51,7 @@ public class FilmControllerTest {
 
     @Test
     void shouldThrowInvalidDesc() {
-        film.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-                "Donec ac accumsan nisl. Integer vestibulum ex nec ex elementum, eget tempus eros sollicitudin. " +
-                "In turpis mauris, porta facilisis luctus ut cras.");
+        film.setDescription("L".repeat(201));
 
         Exception exception = assertThrows(ValidationException.class, () -> {
             filmController.createFilm(film);
