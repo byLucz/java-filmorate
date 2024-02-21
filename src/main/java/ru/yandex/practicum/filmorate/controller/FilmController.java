@@ -1,8 +1,6 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exception.NotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
@@ -41,8 +39,7 @@ public class FilmController {
     @PutMapping
     public Film updateFilm(@Valid @RequestBody Film film) {
         validateFilm(film);
-        if(!films.containsKey(film.getId()))
-        {
+        if (!films.containsKey(film.getId())) {
             log.warn("Такого фильма не существует " + film.getName());
             throw new NotFoundException("Фильма не найдено");
         }
@@ -51,22 +48,18 @@ public class FilmController {
         return film;
     }
 
-    private void validateFilm(Film film)
-    {
-        if(film.getDescription().length() > 200)
-        {
+    private void validateFilm(Film film) {
+        if (film == null) {
+            log.warn("Информации о фильме не предоставлено");
+            throw new ValidationException("Информации о фильме не предоставлено");
+        }
+        if (film.getDescription().length() > 200) {
             log.warn("Описание содержит более 200 символов");
             throw new ValidationException("Описание не может содержать больше 200 символов");
         }
-        if(film.getReleaseDate().isBefore(LocalDate.of(1895,12,28)))
-        {
+        if (film.getReleaseDate().isBefore(LocalDate.of(1895, 12, 28))) {
             log.warn("Фильм не может быть снят раньше 28 декабря 1895 года");
             throw new ValidationException("Фильм не может быть снят раньше 28 декабря 1895 года");
-        }
-        if(film == null)
-        {
-            log.warn("Информации о фильме не предоставлено");
-            throw new ValidationException("Информации о фильме не предоставлено");
         }
     }
 }
