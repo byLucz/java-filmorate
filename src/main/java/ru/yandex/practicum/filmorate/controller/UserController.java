@@ -38,7 +38,7 @@ public class UserController {
     @PutMapping
     public User updateUser(@Valid @RequestBody User user) {
         validateUser(user);
-        if(!users.containsKey(user.getId())) {
+        if (!users.containsKey(user.getId())) {
             log.warn("Такого пользователя не существует " + user.getName());
             throw new NotFoundException("Пользователя не найдено");
         }
@@ -47,15 +47,14 @@ public class UserController {
         return user;
     }
 
-    private void validateUser(User user)
-    {
-        if(user.getName() == null || user.getName().isBlank()) {
-            log.info("Пустое имя было заменено на логин");
-            user.setName(user.getLogin());
-        }
-        if(user == null) {
+    private void validateUser(User user) {
+        if (user == null) {
             log.warn("Информации о пользователе не предоставлено");
             throw new ValidationException("Информации о пользователе не предоставлено");
+        }
+        if (user.getName() == null || user.getName().isBlank()) {
+            log.info("Пустое имя было заменено на логин");
+            user.setName(user.getLogin());
         }
     }
 }
