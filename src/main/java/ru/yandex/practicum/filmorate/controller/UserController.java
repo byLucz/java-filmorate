@@ -7,7 +7,6 @@ import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,8 +38,7 @@ public class UserController {
     @PutMapping
     public User updateUser(@Valid @RequestBody User user) {
         validateUser(user);
-        if(!users.containsKey(user.getId()))
-        {
+        if(!users.containsKey(user.getId())) {
             log.warn("Такого пользователя не существует " + user.getName());
             throw new NotFoundException("Пользователя не найдено");
         }
@@ -51,13 +49,11 @@ public class UserController {
 
     private void validateUser(User user)
     {
-        if(user.getName() == null || user.getName().isBlank())
-        {
+        if(user.getName() == null || user.getName().isBlank()) {
             log.info("Пустое имя было заменено на логин");
             user.setName(user.getLogin());
         }
-        if(user == null)
-        {
+        if(user == null) {
             log.warn("Информации о пользователе не предоставлено");
             throw new ValidationException("Информации о пользователе не предоставлено");
         }
