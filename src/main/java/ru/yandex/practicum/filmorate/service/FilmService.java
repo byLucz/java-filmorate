@@ -21,14 +21,14 @@ public class FilmService {
         this.filmStorage = filmStorage;
     }
 
-    public Film addLike(Integer filmId, Integer userId){
+    public Film addLike(Integer filmId, Integer userId) {
         Film film = filmStorage.allFilms().get(--filmId);
         film.getLikeCounter().add(userId);
         log.info("Пользователь c id {} успешно поставил лайк фильму {}",userId,film.getName());
         return filmStorage.updateFilm(film);
     }
 
-    public Film deleteLike(Integer filmId, Integer userId){
+    public Film deleteLike(Integer filmId, Integer userId) {
         Film film = filmStorage.allFilms().get(--filmId);
         if (!film.getLikeCounter().contains(userId))
             throw new NotFoundException("Этот фильм не получал оценок от этого пользователя");
