@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import ru.yandex.practicum.filmorate.controller.FilmController;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.service.FilmService;
+import ru.yandex.practicum.filmorate.storage.InMemoryFilmStorage;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,12 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class FilmControllerTest {
+    private InMemoryFilmStorage filmStorage;
+    private FilmService filmService;
     private FilmController filmController;
     private Film film;
 
     @BeforeEach
     void prepareData() {
-        filmController = new FilmController();
+        filmController = new FilmController(filmStorage, filmService);
 
         film = Film.builder()
                 .name("Титаник")
