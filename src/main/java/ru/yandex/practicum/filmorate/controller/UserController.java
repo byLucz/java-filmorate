@@ -15,6 +15,7 @@ public class UserController {
     private final InMemoryUserStorage userStorage;
 
     private final UserService userService;
+
     @Autowired
     public UserController(InMemoryUserStorage userStorage, UserService userService) {
         this.userStorage = userStorage;
