@@ -13,6 +13,6 @@ public interface UserStorage {
     User updateUsers(User user);
 
     void validateUser(User user);
-    Map<Integer, User> getUsers();
 
+    Map<Integer, User> getUsers();
 }
