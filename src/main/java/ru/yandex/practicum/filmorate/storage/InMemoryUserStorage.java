@@ -11,6 +11,7 @@ import java.util.*;
 @Component
 @Slf4j
 public class InMemoryUserStorage implements UserStorage {
+
     private Map<Integer, User> users = new HashMap<>();
     private int userId = 1;
 
@@ -56,5 +57,9 @@ public class InMemoryUserStorage implements UserStorage {
             log.info("Пустое имя было заменено на логин");
             user.setName(user.getLogin());
         }
+    }
+
+    public Map<Integer, User> getUsers() {
+        return users;
     }
 }
