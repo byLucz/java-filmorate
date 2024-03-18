@@ -14,4 +14,5 @@ public interface UserStorage {
 
     void validateUser(User user);
     Map<Integer, User> getUsers();
+
 }
