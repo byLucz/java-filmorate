@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 public class FilmService {
     private final FilmStorage filmStorage;
 
-    @Autowired
     public FilmService(FilmStorage filmStorage) {
         this.filmStorage = filmStorage;
     }
