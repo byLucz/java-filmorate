@@ -49,6 +49,12 @@ public class InMemoryFilmStorage implements FilmStorage {
         log.info("Обновлен фильм " + film.getName());
         return film;
     }
+
+    @Override
+    public Map<Integer, Film> getFilms() {
+        return null;
+    }
+
     private void validateFilm(Film film) {
         if (film == null) {
             log.warn("Информации о фильме не предоставлено");
