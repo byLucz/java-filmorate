@@ -26,6 +26,7 @@ class FilmDbStorageTest {
         private final JdbcTemplate jdbcTemplate;
 
         private FilmDbStorage filmDbStorage;
+
         @BeforeEach
         void setUp() {
             filmDbStorage = new FilmDbStorage(jdbcTemplate);
@@ -46,6 +47,7 @@ class FilmDbStorageTest {
                     .usingRecursiveComparison() // проверяем, что значения полей нового
                     .isEqualTo(newUser);        // и сохраненного пользователя - совпадают
         }
+
         @Test
         void testCreateFilm() {
             Film newFilm = new Film(null, "Test Film", "Description", LocalDate.now(), 120, new MPA(1, "PG-13", "1131313131313131313"));
@@ -59,6 +61,7 @@ class FilmDbStorageTest {
             assertThat(createdFilm).isNotNull();
             assertThat(createdFilm.getId()).isNotNull();
         }
+
         @Test
         void testUpdateFilm() {
             Film newFilm = new Film(null, "Test Film", "Description", LocalDate.now(), 120, new MPA(1, "PG-13", "1131313131313131313"));
