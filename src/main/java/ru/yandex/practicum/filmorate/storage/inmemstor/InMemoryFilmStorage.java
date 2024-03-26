@@ -1,15 +1,18 @@
-package ru.yandex.practicum.filmorate.storage;
+package ru.yandex.practicum.filmorate.storage.inmemstor;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.exception.NotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.storage.FilmStorage;
 
 import java.time.LocalDate;
 import java.util.*;
 
 @Component
+@Qualifier("inMemoryFilmStorage")
 @Slf4j
 public class InMemoryFilmStorage implements FilmStorage {
     private Map<Integer, Film> films = new HashMap<>();
@@ -46,9 +49,7 @@ public class InMemoryFilmStorage implements FilmStorage {
         log.info("Обновлен фильм " + film.getName());
         return film;
     }
-
-    @Override
-    public void validateFilm(Film film) {
+    private void validateFilm(Film film) {
         if (film == null) {
             log.warn("Информации о фильме не предоставлено");
             throw new ValidationException("Информации о фильме не предоставлено");
