@@ -1,7 +1,7 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.model.Rating;
+import ru.yandex.practicum.filmorate.model.MPA;
 import ru.yandex.practicum.filmorate.storage.RatingDbStorage;
 
 import java.util.List;
@@ -16,12 +16,12 @@ public class RatingController {
     }
 
     @GetMapping
-    public List<Rating> allRatings() {
+    public List<MPA> allRatings() {
         return ratingStorage.allRatings();
     }
 
     @GetMapping("/{id}")
-    public Rating findRatingById(@PathVariable Integer id) {
+    public MPA findRatingById(@PathVariable Integer id) {
         return ratingStorage.findRatingById(id);
     }
 }
