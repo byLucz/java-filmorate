@@ -10,5 +10,4 @@ public interface FilmStorage {
 
     Film updateFilm(Film film);
 
-    void validateFilm(Film film);
 }
