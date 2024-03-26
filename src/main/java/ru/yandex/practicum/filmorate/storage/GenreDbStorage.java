@@ -4,13 +4,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.model.Genre;
-import ru.yandex.practicum.filmorate.model.User;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @Component
-public class GenreDbStorage implements GenreStorage{
+public class GenreDbStorage implements GenreStorage {
     private JdbcTemplate jdbcTemplate;
 
     public GenreDbStorage(JdbcTemplate jdbcTemplate) {
@@ -23,6 +20,7 @@ public class GenreDbStorage implements GenreStorage{
 
         return new Genre(id, name);
     };
+
     @Override
     public List<Genre> allGenres() {
         String sql = "SELECT * FROM PUBLIC.GENRE";
