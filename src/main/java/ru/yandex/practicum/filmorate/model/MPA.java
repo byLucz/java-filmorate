@@ -1,6 +1,5 @@
 package ru.yandex.practicum.filmorate.model;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @RequiredArgsConstructor
-public class Rating {
+public class MPA {
     @Autowired
     private Integer id;
     @NotBlank
@@ -16,7 +15,7 @@ public class Rating {
     private String description;
 
 
-    public Rating(Integer id, String ratingCode, String description) {
+    public MPA(Integer id, String ratingCode, String description) {
         this.id = id;
         this.ratingCode = ratingCode;
         this.description = description;
