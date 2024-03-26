@@ -3,7 +3,8 @@ package ru.yandex.practicum.filmorate.controller;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.UserService;
-import ru.yandex.practicum.filmorate.storage.InMemoryUserStorage;
+import ru.yandex.practicum.filmorate.storage.UserDbStorage;
+import ru.yandex.practicum.filmorate.storage.inmemstor.InMemoryUserStorage;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -11,12 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final InMemoryUserStorage userStorage;
+    private final UserDbStorage userStorage;
 
     private final UserService userService;
 
 
-    public UserController(InMemoryUserStorage userStorage, UserService userService) {
+    public UserController(UserDbStorage userStorage, UserService userService) {
         this.userStorage = userStorage;
         this.userService = userService;
     }
