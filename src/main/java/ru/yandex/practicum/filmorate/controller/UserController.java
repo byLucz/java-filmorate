@@ -15,7 +15,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     public UserController(UserDbStorage userStorage, UserService userService) {
         this.userStorage = userStorage;
         this.userService = userService;
@@ -50,6 +49,7 @@ public class UserController {
     public List<User> getFriends(@PathVariable int id) {
         return userService.getFriendsList(id);
     }
+
     @GetMapping("/{id}/friends/common/{otherId}")
     public List<User> getCommonFriends(@PathVariable int id, @PathVariable int otherId) {
         return userService.getCommonFriends(id, otherId);
