@@ -50,7 +50,7 @@ public class UserService {
         log.info("Пользователь {} успешно удален из друзей пользователя {}",friendId,userId);
     }
 
-    public List<User> getFriendsList(int userId){
+    public List<User> getFriendsList(int userId) {
         String sql = "SELECT f.FRIEND_ID FROM FRIENDSHIP f WHERE f.USER_ID = ?";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             int friendId = rs.getInt("FRIEND_ID");
@@ -82,6 +82,7 @@ public class UserService {
         log.info("Выведен список общих друзей для пользователей {} и {}", friend.getName(), user.getName());
         return commonFriends;
     }
+
     public void updateFriendshipStatus(int userId, int friendId) {
         String sql = "SELECT COUNT(*) AS count " +
                 "FROM FRIENDSHIP " +
@@ -93,6 +94,7 @@ public class UserService {
                 "WHERE (USER_ID = ? AND FRIEND_ID = ?) OR (USER_ID = ? AND FRIEND_ID = ?)";
         jdbcTemplate.update(sql, status, userId, friendId, friendId, userId);
     }
+
     public boolean isUserExists(int userId) {
         String sql = "SELECT COUNT(*) FROM USERS WHERE ID = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, userId);
