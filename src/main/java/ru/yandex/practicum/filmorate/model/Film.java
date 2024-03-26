@@ -36,8 +36,7 @@ public class Film {
         this.mpa = mpa;
     }
 
-    public void addGenre(Genre genre)
-    {
+    public void addGenre(Genre genre) {
         genres.add(genre);
     }
 }
