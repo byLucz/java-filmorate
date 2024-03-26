@@ -8,7 +8,7 @@ import ru.yandex.practicum.filmorate.model.MPA;
 import java.util.List;
 
 @Component
-public class RatingDbStorage implements RatingStorage{
+public class RatingDbStorage implements RatingStorage {
     private JdbcTemplate jdbcTemplate;
 
     public RatingDbStorage(JdbcTemplate jdbcTemplate) {

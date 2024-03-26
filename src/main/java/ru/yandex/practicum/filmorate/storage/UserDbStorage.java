@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Component
 @Qualifier("userDbStorage")
 @Slf4j
-public class UserDbStorage implements UserStorage{
+public class UserDbStorage implements UserStorage {
     private JdbcTemplate jdbcTemplate;
 
     public UserDbStorage(JdbcTemplate jdbcTemplate) {
@@ -44,6 +44,7 @@ public class UserDbStorage implements UserStorage{
         }
         return user;
     };
+
     @Override
     public List<User> allUsers() {
         String sql = "SELECT u.ID AS id, u.name AS name, u.LOGIN AS login, " +
@@ -99,6 +100,5 @@ public class UserDbStorage implements UserStorage{
             user.setName(user.getLogin());
         }
     }
-
 
 }
