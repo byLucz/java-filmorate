@@ -11,13 +11,13 @@ public class MPA {
     @Autowired
     private Integer id;
     @NotBlank
-    private String ratingCode;
+    private String name;
     private String description;
 
 
-    public MPA(Integer id, String ratingCode, String description) {
+    public MPA(Integer id, String name, String description) {
         this.id = id;
-        this.ratingCode = ratingCode;
+        this.name = name;
         this.description = description;
     }
 }

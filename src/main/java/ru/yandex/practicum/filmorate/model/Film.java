@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 public class Film {
     @Autowired
     private Integer id;
-    private Set<Integer> likeCounter;
+    private Set<Integer> likeCounter = new HashSet<>();
     @NotBlank
     private String name;
     private String description;
