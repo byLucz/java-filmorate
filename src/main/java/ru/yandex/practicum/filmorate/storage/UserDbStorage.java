@@ -18,7 +18,7 @@ import java.util.Set;
 
 @Component
 @Slf4j
-public class UserDbStorage implements UserStorage{
+public class UserDbStorage implements UserStorage {
     private final JdbcTemplate jdbcTemplate;
 
     public UserDbStorage(JdbcTemplate jdbcTemplate) {
@@ -133,8 +133,7 @@ public class UserDbStorage implements UserStorage{
     }
 
     @Override
-    public List<User> getCommonFriendsFromDB(int userId, int friendId)
-    {
+    public List<User> getCommonFriendsFromDB(int userId, int friendId) {
         String sql = "SELECT * FROM users " +
                 "WHERE id IN (SELECT friend_id FROM friendship " +
                 "WHERE user_id = ? INTERSECT " +
