@@ -1,8 +1,10 @@
 package ru.yandex.practicum.filmorate.storage;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+import ru.yandex.practicum.filmorate.exception.NotFoundException;
 import ru.yandex.practicum.filmorate.model.MPA;
 
 import java.util.List;
@@ -31,6 +33,10 @@ public class RatingDbStorage implements RatingStorage{
     @Override
     public MPA findRatingById(int id) {
         String sql = "SELECT * FROM PUBLIC.RATING WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, ratingRowMapper);
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{id}, ratingRowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            throw new NotFoundException("Такого рейтинга нет");
+        }
     }
 }
